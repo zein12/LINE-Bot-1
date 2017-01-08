@@ -7,5 +7,7 @@
             "email": "eak149@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "linecorp/line-bot-sdk": "^1.3"
+    }
 }
