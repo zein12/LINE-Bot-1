@@ -8,5 +8,5 @@ $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $secret]);
 
 $response = $bot->replyText('<reply token>', 'hello!');
-
+echo $response;
 ?>
