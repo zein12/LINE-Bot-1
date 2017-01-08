@@ -19,6 +19,40 @@ if (!is_null($events['events'])) {
 			// Get replyToken
 			$replyToken = $event['replyToken'];
 
+
+      //if (strpos($text, "หา") !== false) {
+        $ch1 = curl_init();
+        curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch1, CURLOPT_URL, 'https://th.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles='.$text);
+        $result1 = curl_exec($ch1);
+        curl_close($ch1);
+
+        $obj = json_decode($result1, true);
+        foreach($obj['query']['pages'] as $key => $val){
+          $result_text = $val['extract'];
+        }
+
+        if(empty($result_text)){//ถ้าไม่พบให้หาจาก en
+          $ch1 = curl_init();
+          curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
+          curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
+          curl_setopt($ch1, CURLOPT_URL, 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles='.$text);
+          $result1 = curl_exec($ch1);
+          curl_close($ch1);
+
+          $obj = json_decode($result1, true);
+          foreach($obj['query']['pages'] as $key => $val){
+            $result_text = $val['extract'];
+          }
+        }
+        if(empty($result_text)){//หาจาก en ไม่พบก็บอกว่า ไม่พบข้อมูล ตอบกลับไป
+          $result_text = 'ไม่พบข้อมูล';
+        }
+        $response_format_text = ['contentType'=>1,"toType"=>1,"text"=>$result_text];
+
+      //}
+
 			// Build message to reply back
 			$messages = [
 				'type' => 'text',
@@ -29,7 +63,8 @@ if (!is_null($events['events'])) {
 			$url = 'https://api.line.me/v2/bot/message/reply';
 			$data = [
 				'replyToken' => $replyToken,
-				'messages' => [$messages],
+				//'messages' => [$messages],
+        'messages' => $response_format_text;
 			];
 			$post = json_encode($data);
 			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
