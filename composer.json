@@ -1,3 +1,11 @@
 {
-    empty ({});
+    "name": "eak149/line-bot",
+    "description": "test line-bot",
+    "authors": [
+        {
+            "name": "eak149",
+            "email": "eak149@gmail.com"
+        }
+    ],
+    "require": {}
 }
