@@ -1,8 +1,8 @@
 <?php
 //require_once 'vendor/autoload.php';
 
-$access_token = '+0SrTLoZWRp4Fq/dSztfyX+yWwmRLIpIgLTMG0xE/M5hsTqT97/GsXkAXfQW2G8uodEgfbiSuvR4AOnO4CXN3IINjOE7hmGiKA+YIapyxjnjHipS02l0VOjgegMk4j8k52X8BnMcupok7bX4KLK1YgdB04t89/1O/w1cDnyilFU=';
-$secret = 'd84110d1394770c0075d31101d92d588';
+$access_token = '3/cEBpOR0mjAMUtnHKrSrx3N6FnMVNPYfXBIwMO6HNGaljxuxTxZz2fGrmZYFwqfV3dvAWMa7FEGrmOONfbZ7or1wxYgpjbtFMS0Mkk+RftjvYSrUpThxAHGiivf2M662z2zM5P8BSKby0dJiBG3GQdB04t89/1O/w1cDnyilFU=';
+$secret = 'a6b4b1a80d9f25eb0a719fc92cef7d86';
 
 // Get POST body content
 $content = file_get_contents('php://input');
@@ -37,7 +37,7 @@ if (!is_null($events['events'])) {
           }
         }
         if(empty($result_text)){//หาจาก en ไม่พบก็บอกว่า ไม่พบข้อมูล ตอบกลับไป
-          $result_text = 'ไม่พบข้อมูล';
+          $result_text = 'Teu aya data';
         }
         //$response_format_text = ['contentType'=>1,"toType"=>1,"text"=>$result_text];
 
