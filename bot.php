@@ -27,7 +27,7 @@ if (!is_null($events['events'])) {
           $ch1 = curl_init();
           curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
           curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
-          curl_setopt($ch1, CURLOPT_URL, 'https://en.wikipedia.org/w/api.php?action=query&formatversion=2&prop=pageimages|pageterms&titles='.$text);
+          curl_setopt($ch1, CURLOPT_URL, 'https://en.wikipedia.org/w/api.php?format=json&action=query&exintro=&explaintext=&formatversion=2&prop=pageimages|pageterms&titles='.$text);
           $result1 = curl_exec($ch1);
           curl_close($ch1);
 
